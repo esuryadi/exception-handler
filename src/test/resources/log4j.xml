@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+  debug="false">
+
+  <appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+    <param name="MaxFileSize" value="10MB" />
+    <param name="MaxBackupIndex" value="10" />
+    <param name="File" value="log/exception.log" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %C - %m%n" />
+    </layout>
+  </appender>
+  
+  <appender name="ERROR" class="org.apache.log4j.RollingFileAppender">
+    <param name="MaxFileSize" value="10MB" />
+    <param name="MaxBackupIndex" value="10" />
+    <param name="File" value="log/error.log" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d [%t] %-5p %C - %m%n" />
+    </layout>
+  </appender>
+
+  <logger name="com.suryadisoft">
+    <level value="DEBUG" />
+  </logger>
+  
+  <logger name="com.suryadisoft.exception.handler" additivity="false">
+    <level value="ERROR" />
+    <appender-ref ref="ERROR" />
+  </logger>
+
+  <root>
+    <priority value="DEBUG" />
+    <appender-ref ref="FILE" />
+  </root>
+
+</log4j:configuration>
